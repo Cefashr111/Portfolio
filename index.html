@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seif Khalefa — Content &amp; Digital Marketing</title>
+<meta name="description" content="Seif Khalefa: content marketing, storytelling and social video, with a research and engineering background.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15171B;
+    --ink-soft:#4A4E57;
+    --paper:#FFFFFF;
+    --panel:#F4F4F1;
+    --line:#D9D9D3;
+    --cobalt:#1F3FE0;
+    --gold:#E8A400;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Work Sans', -apple-system, sans-serif;
+    --max:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  a{color:var(--cobalt); text-decoration-thickness:1.5px; text-underline-offset:3px;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--cobalt); outline-offset:3px;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  /* ---- Shell: fixed left rail + scrolling content, collapses on mobile ---- */
+  .shell{display:grid; grid-template-columns: 260px 1fr; max-width:1400px; margin:0 auto;}
+  @media (max-width: 860px){ .shell{display:block;} }
+
+  .rail{
+    position:sticky; top:0; align-self:start; height:100vh;
+    padding:48px 28px; border-right:1px solid var(--line);
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  @media (max-width: 860px){
+    .rail{position:static; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:32px 24px 24px;}
+  }
+  .rail-name{font-family:var(--serif); font-size:1.5rem; font-weight:600; margin:0 0 4px;}
+  .rail-role{color:var(--ink-soft); font-size:0.95rem; margin:0 0 32px;}
+  .rail-nav{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .rail-nav a{color:var(--ink); font-size:0.95rem; text-decoration:none; border-left:2px solid transparent; padding-left:12px;}
+  .rail-nav a:hover{border-left-color:var(--cobalt); color:var(--cobalt);}
+  .rail-foot{color:var(--ink-soft); font-size:0.85rem; margin-top:32px;}
+  @media (max-width:860px){ .rail-foot{display:none;} .rail-nav{flex-direction:row; flex-wrap:wrap; gap:18px;} }
+
+  main{min-width:0;}
+  section{padding:76px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-inner{padding:0 48px; max-width:760px;}
+  @media (max-width:860px){ .section-inner{padding:0 24px;} }
+
+  .kicker{font-family:var(--sans); font-size:0.85rem; color:var(--ink-soft); margin:0 0 14px;}
+  h1,h2,h3{font-family:var(--serif); font-weight:600; margin:0;}
+  h2{font-size:1.9rem; margin-bottom:28px; letter-spacing:-0.01em;}
+  p{margin:0 0 16px;}
+  .lede{font-size:1.15rem; color:var(--ink-soft);}
+
+  /* Hero */
+  .hero{padding-top:88px;}
+  .hero h1{font-size:clamp(2.1rem, 4.5vw, 3.2rem); line-height:1.12; letter-spacing:-0.015em; max-width:14ch;}
+  .hero .lede{max-width:56ch; margin-top:22px; font-size:1.2rem;}
+  .hero-mark{margin-top:44px;}
+  .hero-mark svg{display:block;}
+
+  /* About */
+  .about-grid{display:grid; grid-template-columns: 1fr; gap:24px;}
+
+  /* Skills */
+  .skill-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px 32px;}
+  @media (max-width:520px){ .skill-list{grid-template-columns:1fr;} }
+  .skill-list li{padding:12px 0; border-bottom:1px solid var(--line); font-size:0.98rem;}
+
+  /* Timeline */
+  .tl{list-style:none; margin:0; padding:0;}
+  .tl-item{display:grid; grid-template-columns:88px 1fr; gap:20px; padding:26px 0; border-top:1px solid var(--line);}
+  .tl-item:first-child{border-top:none;}
+  .tl-date{font-size:0.85rem; color:var(--ink-soft); padding-top:3px;}
+  .tl-role{font-family:var(--serif); font-size:1.15rem; font-weight:600; margin:0 0 2px;}
+  .tl-org{color:var(--ink-soft); font-size:0.95rem; margin:0 0 10px;}
+  .tl-body p{margin:0 0 8px; font-size:0.98rem;}
+  .tag{display:inline-block; font-size:0.78rem; color:var(--ink-soft); border:1px solid var(--line); border-radius:3px; padding:3px 9px; margin:2px 6px 0 0;}
+
+  /* Also brings */
+  .also{background:var(--panel); border-radius:6px; padding:26px 28px; margin-top:36px;}
+  .also h3{font-size:1.05rem; margin-bottom:10px;}
+  .also ul{margin:0; padding-left:18px;}
+  .also li{margin-bottom:6px; font-size:0.95rem;}
+
+  /* Project feature */
+  .project{border:1px solid var(--line); border-radius:6px; padding:32px; position:relative;}
+  .project h3{font-size:1.35rem; margin-bottom:6px;}
+  .project .status{font-size:0.85rem; color:var(--gold); font-weight:500; margin-bottom:18px;}
+  .project ul{padding-left:18px; margin:14px 0 0;}
+  .project li{margin-bottom:8px;}
+
+  /* Education */
+  .edu-item{padding:20px 0; border-top:1px solid var(--line);}
+  .edu-item:first-child{border-top:none;}
+  .edu-role{font-family:var(--serif); font-weight:600; font-size:1.1rem; margin:0 0 2px;}
+  .edu-org{color:var(--ink-soft); font-size:0.95rem; margin:0 0 8px;}
+
+  /* Contact */
+  .contact-list{list-style:none; margin:0; padding:0;}
+  .contact-list li{padding:14px 0; border-top:1px solid var(--line); display:flex; gap:16px; font-size:1rem;}
+  .contact-list li:first-child{border-top:none;}
+  .contact-label{color:var(--ink-soft); min-width:96px;}
+
+  footer{padding:32px 48px 56px; color:var(--ink-soft); font-size:0.85rem;}
+  @media (max-width:860px){ footer{padding:32px 24px 56px;} }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <nav class="rail" aria-label="Section navigation">
+    <div>
+      <p class="rail-name">Seif Khalefa</p>
+      <p class="rail-role">Content &amp; Digital Marketing</p>
+      <ul class="rail-nav">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#project">Featured project</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <p class="rail-foot">Cairo, Egypt</p>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="section-inner">
+        <h1>Trained to solve engineering problems. Now building content that solves marketing ones.</h1>
+        <p class="lede">I'm Seif — a Cairo-based content and digital marketing enthusiast with a research background. I write, script, and build content that moves people, and I bring a research habit of testing ideas against evidence rather than guessing.</p>
+        <div class="hero-mark" aria-hidden="true">
+          <svg width="220" height="64" viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="32" x2="150" y2="32" stroke="#D9D9D3" stroke-width="1.5"/>
+            <path d="M150 16L172 32L150 48V16Z" fill="#1F3FE0"/>
+            <circle cx="198" cy="32" r="4" fill="#E8A400"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-inner">
+        <p class="kicker">About</p>
+        <div class="about-grid">
+          <p>My background is in sustainable design engineering, and it shapes how I approach marketing: I treat every piece of content as a small experiment — start with a clear idea of the audience, write toward one outcome, and check whether it actually landed.</p>
+          <p>That habit was built through research work, and it now shows up in how I plan content: leading student initiatives, mentoring, running communications for an international student network, and — most recently — studying content marketing directly through a DEPI course, where I'm building out a full storytelling and video-script campaign.</p>
+          <p>What I bring to a marketing team: a genuine curiosity about people, comfort working across cultures and organizations, and the discipline to turn a rough idea into a structured piece of content — whether that's a TikTok script, a campaign narrative, or a research-backed message.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-inner">
+        <p class="kicker">Skills</p>
+        <h2>What I work with</h2>
+        <ul class="skill-list">
+          <li>Content strategy &amp; storytelling</li>
+          <li>Short-form video scripting</li>
+          <li>Social content creation (TikTok)</li>
+          <li>Public relations &amp; partnerships</li>
+          <li>Community &amp; audience engagement</li>
+          <li>Cross-cultural communication</li>
+          <li>Research-informed messaging</li>
+          <li>Project &amp; team leadership</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-inner">
+        <p class="kicker">Experience</p>
+        <h2>Where this comes from</h2>
+        <ul class="tl">
+          <li class="tl-item">
+            <div class="tl-date">2026<br>Present</div>
+            <div class="tl-body">
+              <p class="tl-role">Content Marketing Trainee</p>
+              <p class="tl-org">DEPI — Digital Egypt Pioneers Initiative</p>
+              <p>Working through a content marketing course, building a full storytelling campaign and video script for the practice brand "6901 Cairo" — covering brand voice, narrative structure, and writing for short-form video.</p>
+              <span class="tag">Content strategy</span><span class="tag">Video scripting</span><span class="tag">Brand storytelling</span>
+            </div>
+          </li>
+          <li class="tl-item">
+            <div class="tl-date">2024<br>Present</div>
+            <div class="tl-body">
+              <p class="tl-role">Public Relations Coordinator</p>
+              <p class="tl-org">STEM Innovators | Global Movement</p>
+              <p>Contribute to an international student-led initiative connecting young people across countries. Help connect students with professors, universities, and organizations, and build communication and partnerships across the network — with a focus on reaching women and underserved communities.</p>
+              <span class="tag">Partnerships</span><span class="tag">Communications</span><span class="tag">International audiences</span>
+            </div>
+          </li>
+          <li class="tl-item">
+            <div class="tl-date">2024</div>
+            <div class="tl-body">
+              <p class="tl-role">Marketing Team Member</p>
+              <p class="tl-org">University Marketing Office</p>
+              <p>Created TikTok videos and content ideas to expand the university's reach to a wider audience.</p>
+              <span class="tag">Short-form video</span><span class="tag">Content ideas</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="also">
+          <h3>Also brings</h3>
+          <ul>
+            <li><strong>Team Founder, Bani Sweif STEM Fab-Lab Team</strong> (2023–present) — leads and mentors students on capstone projects; the same skills that make a good community manager: listening, motivating, and keeping a group moving toward a goal.</li>
+            <li><strong>Researcher</strong>, Minerva Research Association &amp; Youth Science Journal — research on renewable energy systems; the source of the "back it with evidence" habit behind his content work.</li>
+            <li><strong>Founder, The Blue Planet</strong> — a youth-led initiative on ocean pollution and environmental awareness, run the way a small campaign is: pick a message, find an audience, get them to act.</li>
+            <li><strong>Volunteer, Resala STEM Fayoum</strong> (2022–present) — community service work.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="project">
+      <div class="section-inner">
+        <p class="kicker">Featured project</p>
+        <h2>6901 Cairo — storytelling &amp; video script</h2>
+        <div class="project">
+          <p class="status">In progress · DEPI content marketing course</p>
+          <p>A content marketing assignment built around a practice brand, "6901 Cairo." The brief: develop a storytelling angle for the brand and turn it into a script for short-form video — practicing the full path from concept to a piece of content someone could actually watch.</p>
+          <ul>
+            <li>Defined a narrative angle for the brand rather than a straight product pitch</li>
+            <li>Wrote a video script structured for short-form platforms</li>
+            <li>Practiced translating a strategy brief into finished creative</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-inner">
+        <p class="kicker">Education</p>
+        <h2>Background</h2>
+        <div class="edu-item">
+          <p class="edu-role">Sustainable Design Engineering</p>
+          <p class="edu-org">University of Prince Edward Island — Cairo Branch · Undergraduate, present</p>
+          <p>Studying sustainable engineering, renewable energy, and environmental systems — the analytical grounding behind a research-first approach to content.</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-role">STEM Education</p>
+          <p class="edu-org">Bani Sweif STEM School · 2025</p>
+          <p>Founded the school's STEM Fab-Lab Team, led its Cultural Committee, and won two Mathematics competitions with different teams of four.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-inner">
+        <p class="kicker">Contact</p>
+        <h2>Get in touch</h2>
+        <ul class="contact-list">
+          <li><span class="contact-label">Email</span> <a href="mailto:moseif911@gmail.com">moseif911@gmail.com</a></li>
+          <li><span class="contact-label">Phone</span> <a href="tel:+20109465956">+20 109 465 956</a></li>
+          <li><span class="contact-label">Location</span> Cairo, Egypt</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      Seif Khalefa · Built for GitHub Pages
+    </footer>
+  </main>
+</div>
+
+</body>
+</html>
